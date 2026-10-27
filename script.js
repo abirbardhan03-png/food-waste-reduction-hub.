@@ -841,86 +841,68 @@ if (logoutBtn) {
 
 }
 
+
 /* =========================================
-   LOGIN SYSTEM
+   SUPABASE LOGIN SYSTEM
 ========================================= */
 
-const loginForm =
-    document.getElementById("loginForm");
+const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
+    loginForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-    loginForm.addEventListener(
-        "submit",
-        function(event) {
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+        const message = document.getElementById("loginMessage");
 
-            event.preventDefault();
+        message.textContent = "Logging in...";
+        message.style.color = "#555";
 
-            const email =
-                document.getElementById("loginEmail").value.trim();
+        try {
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
 
-            const password =
-                document.getElementById("loginPassword").value;
-
-            const message =
-                document.getElementById("loginMessage");
-
-            const savedUser =
-                localStorage.getItem("foodWasteUser");
-
-            if (!savedUser) {
-
-                message.textContent =
-                    "❌ No account found. Please register first.";
-
+            if (error) {
+                message.textContent = "❌ " + error.message;
                 message.style.color = "#d9534f";
-
                 return;
             }
 
-            const user =
-                JSON.parse(savedUser);
+            const userId = data.user.id;
 
-            if (
-                email === user.email &&
-                password === user.password
-            ) {
+            const { data: profile, error: profileError } = await supabaseClient
+                .from("profiles")
+                .select("role")
+                .eq("id", userId)
+                .single();
 
-                localStorage.setItem(
-                    "loggedIn",
-                    "true"
-                );
-
-                message.textContent =
-                    "✅ Login successful!";
-
-                message.style.color =
-                    "#2f8f5b";
-
-                setTimeout(
-                    function() {
-
-                        window.location.href =
-                            "index.html";
-
-                    },
-                    800
-                );
-
-            } else {
-
-                message.textContent =
-                    "❌ Incorrect email or password.";
-
-                message.style.color =
-                    "#d9534f";
+            if (profileError || !profile) {
+                message.textContent = "Login succeeded, but profile could not be loaded.";
+                message.style.color = "#d9534f";
+                return;
             }
 
+            message.textContent = "✅ Login successful!";
+            message.style.color = "#2f8f5b";
+
+            setTimeout(function () {
+                if (profile.role === "admin") {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "index.html";
+                }
+            }, 800);
+
+        } catch (err) {
+            message.textContent = "❌ Something went wrong. Please try again.";
+            message.style.color = "#d9534f";
+            console.error(err);
         }
-    );
-
+    });
 }
-
 
 /* =========================================
    NAVBAR LOGIN STATUS
@@ -1385,4 +1367,18 @@ window.requestFood = async function(donationId, foodName) {
         "Requester: " + requesterName + "\n" +
         "Status: Pending"
     );
-};
+// Mobile navigation menu
+document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mainNav = document.getElementById("mainNav");
+
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener("click", function () {
+            const isOpen = mainNav.classList.toggle("mobile-menu-open");
+
+            mobileMenuBtn.textContent = isOpen ? "✕" : "☰";
+            mobileMenuBtn.setAttribute("aria-expanded", isOpen);
+        });
+    }
+}
+)};
