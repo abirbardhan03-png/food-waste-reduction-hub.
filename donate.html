@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Donate Food | FoodWaste Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <div class="logo">
+            🌱 <span>FoodWaste</span> Hub
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#tips">Tips</a>
+        </nav>
+
+        <div class="nav-buttons">
+            <a href="#" class="login-btn">Login</a>
+            <a href="donate.html" class="donate-btn">Donate Food</a>
+        </div>
+
+    </header>
+
+
+    <!-- Page Header -->
+    <section class="donate-header">
+
+        <div class="donate-header-content">
+
+            <span>🍱 FOOD DONATION</span>
+
+            <h1>
+                Share Food,
+                <strong>Spread Goodness.</strong>
+            </h1>
+
+            <p>
+                Have extra food? Don't let it go to waste.
+                Share it with someone who needs it and make
+                a positive difference in your community.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Donation Form -->
+    <section class="donate-section">
+
+        <div class="donate-container">
+
+            <div class="form-heading">
+
+                <span>DONATION DETAILS</span>
+
+                <h2>
+                    Tell Us About Your
+                    <strong>Food</strong>
+                </h2>
+
+                <p>
+                    Please provide accurate information so people
+                    can safely request your donation.
+                </p>
+
+            </div>
+
+
+            <form class="donation-form" id="donationForm">
+
+                <!-- Food Information -->
+                <div class="form-section-title">
+                    🍽️ Food Information
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="foodName">
+                            Food Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="foodName"
+                            placeholder="e.g. Vegetable Biryani"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Food Category *
+                        </label>
+
+                        <select id="category" required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Cooked Food">
+                                Cooked Food
+                            </option>
+
+                            <option value="Bakery">
+                                Bakery
+                            </option>
+
+                            <option value="Fruits">
+                                Fruits
+                            </option>
+
+                            <option value="Vegetables">
+                                Vegetables
+                            </option>
+
+                            <option value="Packaged Food">
+                                Packaged Food
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="quantity">
+                            Quantity *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="quantity"
+                            placeholder="e.g. 5 kg / 10 meals"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="foodCondition">
+                            Food Condition *
+                        </label>
+
+                        <select id="foodCondition" required>
+
+                            <option value="">
+                                Select condition
+                            </option>
+
+                            <option value="Fresh">
+                                Fresh
+                            </option>
+
+                            <option value="Good">
+                                Good
+                            </option>
+
+                            <option value="Packaged">
+                                Sealed / Packaged
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Availability -->
+                <div class="form-section-title">
+                    🕒 Availability
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="preparedDate">
+                            Prepared / Purchased Date *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="preparedDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="availableUntil">
+                            Available Until *
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="availableUntil"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Pickup Information -->
+                <div class="form-section-title">
+                    📍 Pickup Information
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Pickup Location *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="Enter pickup location"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Food Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        rows="5"
+                        placeholder="Add details about the food, ingredients, quantity, etc."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- Contact Information -->
+                <div class="form-section-title">
+                    📞 Contact Information
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="donorName">
+                            Your Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="donorName"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Contact Number *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Food Image -->
+                <div class="form-section-title">
+                    📷 Food Image
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="foodImage">
+                        Upload Food Image
+                    </label>
+
+                    <input
+                        type="file"
+                        id="foodImage"
+                        accept="image/*"
+                    >
+
+                    <small>
+                        Upload a clear image of the food.
+                    </small>
+
+                </div>
+
+
+                <!-- Submit -->
+                <div class="form-submit">
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                    >
+                        🍱 Submit Food Donation
+                    </button>
+
+                    <p>
+                        By submitting, you confirm that the
+                        information provided is accurate.
+                    </p>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-logo">
+            🌱 FoodWaste Hub
+        </div>
+
+        <p>
+            Reducing food waste. Building better communities.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#how-it-works">
+                How It Works
+            </a>
+
+            <a href="index.html#tips">
+                Tips
+            </a>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Food Waste Reduction Hub. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | FoodWaste Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            🌱 FoodWaste <span>Hub</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="find-food.html">Find Food</a>
+            <a href="requests.html">📋 Requests</a>
+        </nav>
+
+        <div class="nav-buttons">
+            <a href="profile.html" class="profile-btn">
+                👤 Profile
+            </a>
+
+            <a href="index.html" class="donate-btn">
+                Home
+            </a>
+        </div>
+
+    </header>
+
+
+    <section class="dashboard-header">
+
+        <div>
+            <h1>📊 My Dashboard</h1>
+
+            <p>
+                Track your food donations and requests.
+            </p>
+        </div>
+
+    </section>
+
+
+    <section class="dashboard-section">
+
+        <div class="dashboard-container">
+
+            <h2>Welcome, <span id="dashboardName">User</span>! 👋</h2>
+
+
+            <div class="dashboard-stats">
+
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">🍱</div>
+                    <h3 id="donationCount">0</h3>
+                    <p>Food Donations</p>
+                </div>
+
+
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">🤝</div>
+                    <h3 id="requestCount">0</h3>
+                    <p>Food Requests</p>
+                </div>
+
+
+                <div class="dashboard-card">
+                    <div class="dashboard-icon">🌱</div>
+                    <h3 id="impactCount">0</h3>
+                    <p>Meals Shared</p>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-actions">
+
+                <a href="donate.html" class="primary-btn">
+                    🍱 Donate Food
+                </a>
+
+                <a href="find-food.html" class="secondary-btn">
+                    🔎 Find Food
+                </a>
+
+                <a href="profile.html" class="secondary-btn">
+                    👤 My Profile
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="donate.html">Donate Food</a>
+            <a href="find-food.html">Find Food</a>
+            <a href="profile.html">Profile</a>
+        </div>
+
+        <p class="copyright">
+            © 2026 Food Waste Reduction Hub. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function () {
+  const db = window.supabase.createClient(
+    "https://maznzjsnmczosiyjpqsh.supabase.co",
+    "sb_publishable_fzAZPszl6XniPpsRPbpopw_3R4-z4Ho"
+  );
+
+  const user = JSON.parse(localStorage.getItem("foodWasteUser") || "null");
+  if (!user) {
+    document.getElementById("dashboardName").textContent = "Guest";
+    return;
+  }
+  document.getElementById("dashboardName").textContent = user.name;
+
+  const d = await db.from("food_donations").select("*").eq("donor_name", user.name);
+  const r = await db.from("food_requests").select("*").eq("requester_name", user.name);
+
+  console.log("DONATIONS:", d.data, "ERROR:", d.error);
+  console.log("REQUESTS:", r.data, "ERROR:", r.error);
+
+  const donations = d.data || [];
+  const requests = r.data || [];
+
+  let meals = 0;
+  donations.forEach(x => { const q = parseInt(x.quantity); if (!isNaN(q)) meals += q; });
+
+  document.getElementById("donationCount").textContent = donations.length;
+  document.getElementById("requestCount").textContent = requests.length;
+  document.getElementById("impactCount").textContent = meals;
+})();
+</script>
+
+</body>
+</html>

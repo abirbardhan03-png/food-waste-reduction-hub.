@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Food | FoodWaste Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <div class="logo">
+            🌱 <span>FoodWaste</span> Hub
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#tips">Tips</a>
+            <a href="requests.html">📋 Requests</a>
+        </nav>
+
+        <div class="nav-buttons">
+            <a href="#" class="login-btn">Login</a>
+            <a href="donate.html" class="donate-btn">Donate Food</a>
+        </div>
+
+    </header>
+
+
+    <!-- Page Header -->
+    <section class="find-header">
+
+        <div class="find-header-content">
+
+            <span>🔎 FIND AVAILABLE FOOD</span>
+
+            <h1>
+                Good Food Should
+                <strong>Never Go to Waste.</strong>
+            </h1>
+
+            <p>
+                Discover surplus food available in your community
+                and give it a second chance.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Search and Filter -->
+    <section class="find-section">
+
+        <div class="find-container">
+
+            <div class="search-box">
+
+                <div class="search-input">
+
+                    <span>🔎</span>
+
+                    <input
+                        type="text"
+                        id="searchFood"
+                        placeholder="Search food or location..."
+                    >
+
+                </div>
+
+
+                <select id="categoryFilter">
+
+                    <option value="All">
+                        All Categories
+                    </option>
+
+                    <option value="Cooked Food">
+                        Cooked Food
+                    </option>
+
+                    <option value="Bakery">
+                        Bakery
+                    </option>
+
+                    <option value="Fruits">
+                        Fruits
+                    </option>
+
+                    <option value="Vegetables">
+                        Vegetables
+                    </option>
+
+                    <option value="Packaged Food">
+                        Packaged Food
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Food Results -->
+
+            <div class="results-heading">
+
+                <div>
+                    <span>AVAILABLE DONATIONS</span>
+
+                    <h2>
+                        Food Near You 🍱
+                    </h2>
+                </div>
+
+                <p id="foodCount">
+                    0 donations
+                </p>
+
+            </div>
+
+
+            <div
+                class="food-grid"
+                id="foodGrid"
+            >
+                <!-- Donations will appear here -->
+            </div>
+
+
+            <!-- Empty State -->
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <div class="empty-icon">
+                    🍽️
+                </div>
+
+                <h3>
+                    No Food Donations Yet
+                </h3>
+
+                <p>
+                    There are currently no matching food donations.
+                    Be the first person to share food!
+                </p>
+
+                <a
+                    href="donate.html"
+                    class="primary-btn"
+                >
+                    🍱 Donate Food
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🌱 FoodWaste Hub
+        </div>
+
+        <p>
+            Reducing food waste. Building better communities.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#how-it-works">
+                How It Works
+            </a>
+
+            <a href="index.html#tips">
+                Tips
+            </a>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Food Waste Reduction Hub. All rights reserved.
+        </p>
+
+    </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="script.js?v=3"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Food Requests | FoodWaste Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            🌱 FoodWaste <span>Hub</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#tips">Tips</a>
+        </nav>
+
+        <a href="donate.html" class="donate-btn">
+            Donate Food
+        </a>
+    </header>
+
+
+    <!-- Page Header -->
+    <section class="requests-header">
+        <div>
+            <h1>📋 Food Requests</h1>
+
+            <p>
+    View your food requests and requests for your donated food.
+</p>
+        </div>
+    </section>
+
+
+    <!-- Requests -->
+    <section class="requests-section">
+
+        <div class="requests-container">
+
+            <h2>🤝 Current Requests</h2>
+
+            <div id="requestsGrid" class="requests-grid"></div>
+
+            <div id="noRequests" class="no-requests">
+                <div>📭</div>
+
+                <h3>No food requests yet</h3>
+
+                <p>
+                    Food requests will appear here when someone requests food.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-links">
+
+            <a href="index.html#about">About</a>
+
+            <a href="index.html#how-it-works">
+                How It Works
+            </a>
+
+            <a href="index.html#tips">
+                Tips
+            </a>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Food Waste Reduction Hub. All rights reserved.
+        </p>
+
+    </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
