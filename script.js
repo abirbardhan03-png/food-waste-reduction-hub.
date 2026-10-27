@@ -693,114 +693,66 @@ if (requestsGrid && noRequests) {
     /* Start dashboard */
     displayRequests();
 }
+
 /* =========================================
-   REGISTER SYSTEM
+   REGISTER SYSTEM - SUPABASE
 ========================================= */
 
-const registerForm =
-    document.getElementById(
-        "registerForm"
-    );
-
+const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
+    registerForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
+        const name = document.getElementById("registerName").value.trim();
+        const email = document.getElementById("registerEmail").value.trim();
+        const password = document.getElementById("registerPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const message = document.getElementById("registerMessage");
 
-    registerForm.addEventListener(
-        "submit",
-        function(event) {
+        if (password !== confirmPassword) {
+            message.textContent = "❌ Passwords do not match.";
+            message.style.color = "#d9534f";
+            return;
+        }
 
+        message.textContent = "Creating your account...";
+        message.style.color = "#555";
 
-            event.preventDefault();
+        try {
+            const { data, error } = await supabaseClient.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+    data: {
+        full_name: name
+    },
+    emailRedirectTo: "YOUR_EXACT_PUBLISHED_WEBSITE_URL"
+}
+            });
 
-
-            const name =
-                document.getElementById(
-                    "registerName"
-                ).value.trim();
-
-
-            const email =
-                document.getElementById(
-                    "registerEmail"
-                ).value.trim();
-
-
-            const password =
-                document.getElementById(
-                    "registerPassword"
-                ).value;
-
-
-            const confirmPassword =
-                document.getElementById(
-                    "confirmPassword"
-                ).value;
-
-
-            const message =
-                document.getElementById(
-                    "registerMessage"
-                );
-
-
-            if (
-                password !==
-                confirmPassword
-            ) {
-
-
-                message.textContent =
-                    "❌ Passwords do not match.";
-
-
-                message.style.color =
-                    "#d9534f";
-
-
+            if (error) {
+                message.textContent = "❌ " + error.message;
+                message.style.color = "#d9534f";
                 return;
             }
 
+            if (data.user) {
+                message.textContent = data.session
+                    ? "✅ Account created! You can now log in."
+                    : "✅ Registration submitted! Check your email to confirm your account.";
 
-            const user = {
+                message.style.color = "#2f8f5b";
 
-                name: name,
-                email: email,
-                password: password
-
-            };
-
-
-            localStorage.setItem(
-                "foodWasteUser",
-                JSON.stringify(user)
-            );
-
-
-            message.textContent =
-                "✅ Account created successfully!";
-
-
-            message.style.color =
-                "#2f8f5b";
-
-
-            setTimeout(
-                function() {
-
-                    window.location.href =
-                        "login.html";
-
-                },
-                1200
-            );
-
+                registerForm.reset();
+            }
+        } catch (err) {
+            console.error("Registration error:", err);
+            message.textContent = "❌ " + (err.message || "Registration failed.");
+            message.style.color = "#d9534f";
         }
-    );
-
+    });
 }
-
-
 
 /* =========================================
    LOGOUT SYSTEM
@@ -896,11 +848,12 @@ if (loginForm) {
                 }
             }, 800);
 
-        } catch (err) {
-            message.textContent = "❌ Something went wrong. Please try again.";
-            message.style.color = "#d9534f";
-            console.error(err);
-        }
+
+} catch (err) {
+    message.textContent = "❌ " + (err.message || "Something went wrong.");
+    message.style.color = "#d9534f";
+    console.error("Login error:", err);
+}
     });
 }
 
