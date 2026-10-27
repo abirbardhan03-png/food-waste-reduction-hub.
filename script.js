@@ -1345,28 +1345,15 @@ window.requestFood = async function(donationId, foodName) {
             ]);
 
 
-    if (error) {
-
-        console.error(
-            "Request error:",
-            error
-        );
-
-        alert(
-            "❌ Request could not be submitted.\n\n" +
-            error.message
-        );
-
-        return;
-    }
-
-
+    
     alert(
         "✅ Food request submitted successfully!\n\n" +
         "Food: " + foodName + "\n" +
         "Requester: " + requesterName + "\n" +
         "Status: Pending"
     );
+};
+
 // Mobile navigation menu
 document.addEventListener("DOMContentLoaded", function () {
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
@@ -1380,5 +1367,4 @@ document.addEventListener("DOMContentLoaded", function () {
             mobileMenuBtn.setAttribute("aria-expanded", isOpen);
         });
     }
-}
-)};
+});
