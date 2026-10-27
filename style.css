@@ -6650,4 +6650,148 @@ a {
         font-size: 14px;
     }
 
+/* =================================
+   MOBILE RESPONSIVE NAVIGATION
+================================= */
+
+.mobile-menu-btn {
+    display: none;
+    background: #e8f5e9;
+    color: #176b3a;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 25px;
+    cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .navbar {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 15px 5%;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .navbar nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        order: 3;
+    }
+
+    .navbar nav.mobile-menu-open {
+        display: flex;
+    }
+
+    .navbar nav a {
+        display: block;
+        padding: 12px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .navbar .nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        order: 4;
+    }
+
+    .navbar .nav-buttons a {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        padding: 40px 5%;
+        gap: 30px;
+    }
+
+    .hero-content,
+    .hero-visual {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: clamp(32px, 8vw, 46px);
+    }
+
+    .hero-stats,
+    .about-cards,
+    .steps,
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .hero-buttons a {
+        max-width: 100%;
+    }
+
+    .about,
+    .how-it-works,
+    .tips,
+    .cta {
+        padding: 40px 5%;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    img,
+    video {
+        max-width: 100%;
+        height: auto;
+    }
+
+/* =================================
+   MOBILE NAVIGATION MENU
+================================= */
+
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+const mainNav = document.getElementById("mainNav");
+
+if (mobileMenuBtn && mainNav) {
+    mobileMenuBtn.addEventListener("click", function () {
+        const isOpen = mainNav.classList.toggle("mobile-menu-open");
+
+        mobileMenuBtn.setAttribute("aria-expanded", isOpen);
+        mobileMenuBtn.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+
+        mobileMenuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+    mainNav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            mainNav.classList.remove("mobile-menu-open");
+            mobileMenuBtn.textContent = "☰";
+            mobileMenuBtn.setAttribute("aria-expanded", "false");
+        });
+    });
+}
+
