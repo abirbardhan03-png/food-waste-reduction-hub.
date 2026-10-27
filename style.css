@@ -6594,6 +6594,7 @@ a {
 }
 
 
+
 /* =========================================
    SMALL MOBILE
 ========================================= */
@@ -6622,4 +6623,31 @@ a {
     }
 
 }
-```
+
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+    header {
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    header nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    header nav a {
+        display: inline-block;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+}
